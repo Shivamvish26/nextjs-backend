@@ -1,6 +1,6 @@
 // const {USERNAME, PASSWORD} = process.env
 // export const connectionString = `mongodb+srv://${USERNAME}:${PASSWORD}@cluster0.hifupab.mongodb.net/Product?appName=Cluster0`
-
+// MONGODB_URI=mongodb://127.0.0.1:27017/productDB
 import mongoose from "mongoose";
 
 const { MONGODB_URI } = process.env;
