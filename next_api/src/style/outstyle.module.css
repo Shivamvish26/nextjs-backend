@@ -1,0 +1,12 @@
+.submitbutton {
+  padding: 10px 20px;
+  background-color: aqua;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.submitbutton:hover {
+  background-color: aqua !important;
+  color: black !important;
+}

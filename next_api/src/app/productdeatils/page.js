@@ -1,0 +1,69 @@
+
+import React from "react";
+
+async function fetchData() {
+  let data = await fetch("http://localhost:3000/api/products");
+  data = await data.json();
+  if (data.success) {
+    return data.result;
+  } else {
+    return { success: false, message: "Error while fetching data" };
+  }
+}
+
+export default async function PageproductDetails() {
+  const mobiledata = [
+    {
+      id: 1,
+      mobile: "Samsung",
+      company: "Samsung Pvt Ltd",
+      color: "Black",
+      price: 25000,
+    },
+    {
+      id: 2,
+      mobile: "Iphone",
+      company: "Apple Inc",
+      color: "White",
+      price: 80000,
+    },
+    {
+      id: 3,
+      mobile: "OnePlus",
+      company: "OnePlus Tech",
+      color: "Blue",
+      price: 35000,
+    },
+  ];
+
+  const products = await fetchData();
+  console.log("Fetched User Data", products);
+
+  return (
+    <div className="justify-content-center">
+      <h1 className="text-center">Get Product List</h1>
+      <table class="table text-center">
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">Mobile</th>
+            <th scope="col">Company</th>
+            <th scope="col">Color</th>
+            <th scope="col">Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {products.map((item,index) => (
+            <tr key={item.id}>
+              <th scope="row">{index+1}</th>
+              <td>{item.mobile}</td>
+              <td>{item.company}</td>
+              <td>{item.color}</td>
+              <td>{item.price}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}

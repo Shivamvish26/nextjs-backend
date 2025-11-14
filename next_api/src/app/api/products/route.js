@@ -12,7 +12,9 @@
 import { connectDB } from "@/lib/db";
 import { NextResponse } from "next/server";
 import { Product } from "@/lib/model/product";
+import mongoose from "mongoose";
 
+// GET API
 export async function GET() {
   let data;
   try {
