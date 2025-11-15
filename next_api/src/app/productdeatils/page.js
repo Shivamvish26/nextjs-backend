@@ -1,4 +1,4 @@
-
+import Link from "next/link";
 import React from "react";
 
 async function fetchData() {
@@ -42,7 +42,7 @@ export default async function PageproductDetails() {
   return (
     <div className="justify-content-center">
       <h1 className="text-center">Get Product List</h1>
-      <table class="table text-center">
+      <table className="table text-center">
         <thead>
           <tr>
             <th scope="col">id</th>
@@ -53,13 +53,19 @@ export default async function PageproductDetails() {
           </tr>
         </thead>
         <tbody>
-          {products.map((item,index) => (
+          {products.map((item, index) => (
             <tr key={item.id}>
-              <th scope="row">{index+1}</th>
+              <th scope="row">{index + 1}</th>
               <td>{item.mobile}</td>
               <td>{item.company}</td>
               <td>{item.color}</td>
               <td>{item.price}</td>
+              <td><Link
+                href={"productdeatils/"+ item._id}
+                className=" btn btn-primary"
+              >
+                Edit
+              </Link></td>
             </tr>
           ))}
         </tbody>
