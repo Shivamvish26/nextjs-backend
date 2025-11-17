@@ -1,5 +1,7 @@
 import Link from "next/link";
 import React from "react";
+import style from "../../style/outstyle.module.css";
+import Deleteuser from "@/lib/Deleteuser";
 
 async function fetchData() {
   let data = await fetch("http://localhost:3000/api/products");
@@ -54,18 +56,23 @@ export default async function PageproductDetails() {
         </thead>
         <tbody>
           {products.map((item, index) => (
-            <tr key={item.id}>
+            <tr key={item._id}>
               <th scope="row">{index + 1}</th>
               <td>{item.mobile}</td>
               <td>{item.company}</td>
               <td>{item.color}</td>
               <td>{item.price}</td>
-              <td><Link
-                href={"productdeatils/"+ item._id}
-                className=" btn btn-primary"
-              >
-                Edit
-              </Link></td>
+              <td>
+                <Link
+                  href={"productdeatils/" + item._id}
+                  className={style.submitbutton}
+                >
+                  Edit
+                </Link>
+              </td>
+              <td>
+                <Deleteuser id={item._id} />
+              </td>
             </tr>
           ))}
         </tbody>

@@ -14,12 +14,6 @@ export default function PostApiIntePage() {
   const router = useRouter();
   const { editproduct } = useParams();
 
-  useEffect(() => {
-    if (!editproduct) return;
-
-    getproductDeatils(editproduct);
-  }, [editproduct]);
-
   const getproductDeatils = async (productId) => {
     let productData = await fetch(
       `http://localhost:3000/api/products/${productId}`
@@ -38,12 +32,44 @@ export default function PostApiIntePage() {
     }
   };
 
+  const updateDetails = async () => {
+    let data = await fetch(
+      `http://localhost:3000/api/products/${editproduct}`,
+      {
+        method: "PUT",
+        body: JSON.stringify({ mobile, company, color, price }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    data = await data.json();
+    if (data.success) {
+      alert("Product Updated Successfully");
+      console.log(data);
+      router.push("/productdeatils");
+    } else {
+      alert("Error while updating the products");
+    }
+  };
+
+  useEffect(() => {
+    if (!editproduct) return;
+
+    getproductDeatils(editproduct);
+  }, [editproduct]);
+
   return (
     <div>
       <h1 className="text-center">Update API Integration Page</h1>
       <div className="container">
         <div className="row ">
-          <Form form={form} layout="vertical" className="m-4 ">
+          <Form
+            form={form}
+            onFinish={updateDetails}
+            layout="vertical"
+            className="m-4 "
+          >
             <h4>Update Product Deatils:</h4>
             <Row gutter={20}>
               <Col xs={24} md={24} lg={8}>
