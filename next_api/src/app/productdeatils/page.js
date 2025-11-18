@@ -52,6 +52,8 @@ export default async function PageproductDetails() {
             <th scope="col">Company</th>
             <th scope="col">Color</th>
             <th scope="col">Price</th>
+            <th scope="col">Edit Product</th>
+            <th scope="col">Delete Product</th>
           </tr>
         </thead>
         <tbody>
